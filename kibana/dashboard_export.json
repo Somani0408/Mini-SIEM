@@ -1,0 +1,101 @@
+{
+  "description": "Mini SIEM Dashboard Export",
+  "note": "This is a simplified dashboard configuration. In Kibana, create dashboards manually or import via Saved Objects API.",
+  "dashboard_components": [
+    {
+      "type": "visualization",
+      "title": "Failed vs Successful Logins",
+      "visualization_type": "pie",
+      "metrics": [
+        {
+          "field": "success",
+          "aggregation": "terms"
+        }
+      ]
+    },
+    {
+      "type": "visualization",
+      "title": "Top Attacking IPs",
+      "visualization_type": "bar",
+      "metrics": [
+        {
+          "field": "source_ip",
+          "aggregation": "terms",
+          "size": 10,
+          "order": "desc"
+        }
+      ]
+    },
+    {
+      "type": "visualization",
+      "title": "Alerts by Severity",
+      "visualization_type": "pie",
+      "index": "siem-alerts",
+      "metrics": [
+        {
+          "field": "severity",
+          "aggregation": "terms"
+        }
+      ]
+    },
+    {
+      "type": "visualization",
+      "title": "Security Events Over Time",
+      "visualization_type": "line",
+      "metrics": [
+        {
+          "field": "@timestamp",
+          "aggregation": "date_histogram",
+          "interval": "1h"
+        }
+      ]
+    },
+    {
+      "type": "visualization",
+      "title": "Alert Types Distribution",
+      "visualization_type": "bar",
+      "index": "siem-alerts",
+      "metrics": [
+        {
+          "field": "alert_type",
+          "aggregation": "terms"
+        }
+      ]
+    },
+    {
+      "type": "visualization",
+      "title": "MITRE ATT&CK Techniques",
+      "visualization_type": "table",
+      "index": "siem-alerts",
+      "metrics": [
+        {
+          "field": "mitre_technique",
+          "aggregation": "terms"
+        },
+        {
+          "field": "mitre_tactic",
+          "aggregation": "terms"
+        }
+      ]
+    }
+  ],
+  "kibana_instructions": {
+    "step1": "Open Kibana at http://localhost:5601",
+    "step2": "Go to Stack Management > Saved Objects",
+    "step3": "Create index pattern 'siem-logs-*' for logs",
+    "step4": "Create index pattern 'siem-alerts' for alerts",
+    "step5": "Go to Discover to explore logs",
+    "step6": "Go to Visualize Library to create visualizations",
+    "step7": "Go to Dashboard to create and combine visualizations",
+    "step8": "Suggested visualizations:",
+    "visualizations": [
+      "Failed vs Successful Logins (Pie Chart on 'success' field)",
+      "Top 10 Source IPs (Bar Chart on 'source_ip' field, sorted by count)",
+      "Alerts by Severity (Pie Chart on 'severity' field from siem-alerts index)",
+      "Events Timeline (Line Chart on '@timestamp' with date_histogram)",
+      "Alert Types (Bar Chart on 'alert_type' field)",
+      "MITRE Techniques (Data Table showing mitre_technique and mitre_tactic)"
+    ]
+  }
+}
+

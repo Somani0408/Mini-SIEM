@@ -1,0 +1,71 @@
+{
+  "index_patterns": ["siem-alerts"],
+  "settings": {
+    "number_of_shards": 1,
+    "number_of_replicas": 0,
+    "index": {
+      "refresh_interval": "1s"
+    }
+  },
+  "mappings": {
+    "properties": {
+      "@timestamp": {
+        "type": "date"
+      },
+      "alert_type": {
+        "type": "keyword"
+      },
+      "severity": {
+        "type": "keyword"
+      },
+      "title": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
+          }
+        }
+      },
+      "description": {
+        "type": "text"
+      },
+      "source_ip": {
+        "type": "ip"
+      },
+      "username": {
+        "type": "keyword"
+      },
+      "attempt_count": {
+        "type": "integer"
+      },
+      "unique_users": {
+        "type": "integer"
+      },
+      "affected_users": {
+        "type": "keyword"
+      },
+      "ports_scanned": {
+        "type": "integer"
+      },
+      "target_ports": {
+        "type": "integer"
+      },
+      "mitre_technique": {
+        "type": "keyword"
+      },
+      "mitre_tactic": {
+        "type": "keyword"
+      },
+      "mitre_description": {
+        "type": "text"
+      },
+      "status": {
+        "type": "keyword"
+      },
+      "recommended_action": {
+        "type": "text"
+      }
+    }
+  }
+}
+

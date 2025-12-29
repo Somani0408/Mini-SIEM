@@ -1,0 +1,27 @@
+# Mini SIEM Configuration
+
+elasticsearch:
+  host: localhost
+  port: 9200
+  use_ssl: false
+  verify_certs: false
+  index_name: siem-logs
+  index_pattern: siem-logs-*
+
+log_paths:
+  auth_log: logs/auth.log
+  ssh_log: logs/ssh.log
+  syslog: logs/syslog.log
+
+detection:
+  enabled: true
+  alert_index: siem-alerts
+  run_interval_seconds: 60
+
+flask:
+  host: 0.0.0.0
+  port: 5000
+  debug: false
+
+timezone: UTC
+

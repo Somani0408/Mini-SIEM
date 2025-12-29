@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+logs/*.log
+!logs/auth.log
+!logs/ssh.log
+!logs/syslog.log
+
+# Data
+*.json
+!**/mitre_mapping.json
+!**/*template.json
+!**/dashboard_export.json
+
+# Elasticsearch
+es_data/
+
+# Environment
+.env
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
+parsed_logs.json
+

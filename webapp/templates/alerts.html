@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini SIEM - Alerts</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0f1419;
+            color: #e4e4e4;
+            padding: 20px;
+        }
+        
+        .header {
+            background: #1a1f2e;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header h1 {
+            color: #4a9eff;
+            margin-bottom: 10px;
+        }
+        
+        .nav {
+            margin-top: 15px;
+        }
+        
+        .nav a {
+            color: #8b9dc3;
+            text-decoration: none;
+            margin-right: 20px;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        
+        .nav a:hover, .nav a.active {
+            background: #2d3748;
+            color: #4a9eff;
+        }
+        
+        .alert-card {
+            background: #1a1f2e;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            border-left: 4px solid #4a9eff;
+        }
+        
+        .alert-card.high {
+            border-left-color: #ff4757;
+        }
+        
+        .alert-card.medium {
+            border-left-color: #ffa502;
+        }
+        
+        .alert-card.low {
+            border-left-color: #2ed573;
+        }
+        
+        .alert-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 15px;
+        }
+        
+        .alert-title {
+            color: #e4e4e4;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .alert-meta {
+            color: #8b9dc3;
+            font-size: 12px;
+        }
+        
+        .severity-badge {
+            padding: 6px 15px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .severity-high {
+            background: #ff4757;
+            color: white;
+        }
+        
+        .severity-medium {
+            background: #ffa502;
+            color: white;
+        }
+        
+        .severity-low {
+            background: #2ed573;
+            color: white;
+        }
+        
+        .alert-description {
+            color: #e4e4e4;
+            margin: 15px 0;
+            line-height: 1.6;
+        }
+        
+        .alert-details {
+            background: #0f1419;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+        }
+        
+        .alert-details h4 {
+            color: #4a9eff;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .detail-row {
+            display: flex;
+            padding: 8px 0;
+            border-bottom: 1px solid #2d3748;
+        }
+        
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        
+        .detail-label {
+            color: #8b9dc3;
+            width: 150px;
+            font-weight: 600;
+        }
+        
+        .detail-value {
+            color: #e4e4e4;
+            flex: 1;
+        }
+        
+        .mitre-badge {
+            display: inline-block;
+            background: #4a9eff;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        
+        .action-box {
+            background: #2d3748;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            border-left: 3px solid #ffa502;
+        }
+        
+        .action-box h4 {
+            color: #ffa502;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .action-box p {
+            color: #e4e4e4;
+            font-size: 14px;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #8b9dc3;
+        }
+        
+        .error {
+            background: #ff4757;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .filters {
+            background: #1a1f2e;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .filter-item label {
+            color: #8b9dc3;
+            font-size: 14px;
+        }
+        
+        .filter-item select {
+            background: #2d3748;
+            color: #e4e4e4;
+            border: 1px solid #4a9eff;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🔒 Mini SIEM - Security Alerts</h1>
+        <div class="nav">
+            <a href="/">Dashboard</a>
+            <a href="/alerts" class="active">Alerts</a>
+        </div>
+    </div>
+    
+    <div class="filters">
+        <div class="filter-item">
+            <label>Severity:</label>
+            <select id="severity-filter">
+                <option value="">All</option>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+            </select>
+        </div>
+        <div class="filter-item">
+            <label>Type:</label>
+            <select id="type-filter">
+                <option value="">All</option>
+                <option value="brute_force">Brute Force</option>
+                <option value="abnormal_login">Abnormal Login</option>
+                <option value="suspicious_ip">Suspicious IP</option>
+                <option value="port_scanning">Port Scanning</option>
+                <option value="multiple_failed_logins">Multiple Failed Logins</option>
+            </select>
+        </div>
+    </div>
+    
+    <div id="alerts-container">
+        <div class="loading">Loading alerts...</div>
+    </div>
+    
+    <script>
+        let allAlerts = [];
+        
+        function renderAlerts(alerts) {
+            const container = document.getElementById('alerts-container');
+            
+            if (alerts.length === 0) {
+                container.innerHTML = '<div class="loading">No alerts found</div>';
+                return;
+            }
+            
+            container.innerHTML = alerts.map(alert => {
+                const timestamp = new Date(alert['@timestamp']).toLocaleString();
+                const severity = alert.severity || 'Unknown';
+                const severityClass = severity.toLowerCase();
+                
+                return `
+                    <div class="alert-card ${severityClass}">
+                        <div class="alert-header">
+                            <div>
+                                <div class="alert-title">${alert.title || 'Untitled Alert'}</div>
+                                <div class="alert-meta">
+                                    ${timestamp} | ${alert.alert_type || 'unknown'} | 
+                                    <span class="mitre-badge">${alert.mitre_technique || 'N/A'}</span>
+                                    ${alert.mitre_tactic || ''}
+                                </div>
+                            </div>
+                            <span class="severity-badge severity-${severityClass}">${severity}</span>
+                        </div>
+                        
+                        <div class="alert-description">
+                            ${alert.description || 'No description available'}
+                        </div>
+                        
+                        <div class="alert-details">
+                            <h4>Alert Details</h4>
+                            ${alert.source_ip ? `<div class="detail-row"><span class="detail-label">Source IP:</span><span class="detail-value">${alert.source_ip}</span></div>` : ''}
+                            ${alert.username ? `<div class="detail-row"><span class="detail-label">Username:</span><span class="detail-value">${alert.username}</span></div>` : ''}
+                            ${alert.attempt_count ? `<div class="detail-row"><span class="detail-label">Attempt Count:</span><span class="detail-value">${alert.attempt_count}</span></div>` : ''}
+                            ${alert.ports_scanned ? `<div class="detail-row"><span class="detail-label">Ports Scanned:</span><span class="detail-value">${alert.ports_scanned}</span></div>` : ''}
+                            ${alert.affected_users ? `<div class="detail-row"><span class="detail-label">Affected Users:</span><span class="detail-value">${Array.isArray(alert.affected_users) ? alert.affected_users.join(', ') : alert.affected_users}</span></div>` : ''}
+                            ${alert.mitre_description ? `<div class="detail-row"><span class="detail-label">MITRE Description:</span><span class="detail-value">${alert.mitre_description}</span></div>` : ''}
+                        </div>
+                        
+                        ${alert.recommended_action ? `
+                        <div class="action-box">
+                            <h4>Recommended Action</h4>
+                            <p>${alert.recommended_action}</p>
+                        </div>
+                        ` : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        function filterAlerts() {
+            const severityFilter = document.getElementById('severity-filter').value;
+            const typeFilter = document.getElementById('type-filter').value;
+            
+            let filtered = allAlerts;
+            
+            if (severityFilter) {
+                filtered = filtered.filter(a => a.severity === severityFilter);
+            }
+            
+            if (typeFilter) {
+                filtered = filtered.filter(a => a.alert_type === typeFilter);
+            }
+            
+            renderAlerts(filtered);
+        }
+        
+        // Load alerts
+        fetch('/api/alerts')
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    allAlerts = data.alerts || [];
+                    renderAlerts(allAlerts);
+                } else {
+                    document.getElementById('alerts-container').innerHTML = 
+                        `<div class="error">Error loading alerts: ${data.error || 'Unknown error'}</div>`;
+                }
+            })
+            .catch(error => {
+                document.getElementById('alerts-container').innerHTML = 
+                    `<div class="error">Error loading alerts: ${error.message}</div>`;
+            });
+        
+        // Add filter listeners
+        document.getElementById('severity-filter').addEventListener('change', filterAlerts);
+        document.getElementById('type-filter').addEventListener('change', filterAlerts);
+        
+        // Auto-refresh every 30 seconds
+        setInterval(() => {
+            fetch('/api/alerts')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        allAlerts = data.alerts || [];
+                        filterAlerts();
+                    }
+                })
+                .catch(error => console.error('Error refreshing alerts:', error));
+        }, 30000);
+    </script>
+</body>
+</html>
+

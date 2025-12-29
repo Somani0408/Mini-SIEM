@@ -1,0 +1,23 @@
+Jan 15 09:00:01 server systemd: Started Session 1 of user root.
+Jan 15 09:15:23 server kernel: [123456.789] Connection attempt from 10.0.0.5:54322 to 22
+Jan 15 09:16:10 server kernel: [123457.890] Connection attempt from 192.168.1.100:54321 to 22
+Jan 15 09:16:15 server kernel: [123458.123] Connection attempt from 192.168.1.100:54321 to 22
+Jan 15 10:30:45 server systemd: Started SSH service.
+Jan 15 11:20:12 server kernel: [123459.456] Connection attempt from 203.0.113.50:54324 to 22
+Jan 15 14:45:00 server kernel: [123460.789] Connection attempt from 198.51.100.25:54326 to 22
+Jan 15 15:30:12 server kernel: [123461.012] Connection attempt from 192.168.1.200:54330 to 22
+Jan 15 16:00:45 server systemd: Stopped SSH service.
+Jan 15 16:01:00 server systemd: Started SSH service.
+Jan 15 20:30:10 server kernel: [123462.345] Connection attempt from 198.51.100.100:54332 to 22
+Jan 15 22:10:05 server kernel: [123463.678] Connection attempt from 203.0.113.200:54333 to 80
+Jan 15 22:10:10 server kernel: [123464.789] Connection attempt from 203.0.113.200:54334 to 443
+Jan 15 22:10:15 server kernel: [123465.890] Connection attempt from 203.0.113.200:54335 to 3306
+Jan 15 22:10:20 server kernel: [123466.123] Connection attempt from 203.0.113.200:54336 to 8080
+Jan 15 22:10:25 server kernel: [123467.456] Connection attempt from 203.0.113.200:54337 to 3389
+Jan 15 22:10:30 server kernel: [123468.789] Connection attempt from 203.0.113.200:54338 to 5432
+Jan 15 22:10:35 server kernel: [123469.012] Connection attempt from 203.0.113.200:54339 to 27017
+Jan 15 22:10:40 server kernel: [123470.345] Connection attempt from 203.0.113.200:54340 to 6379
+Jan 15 22:10:45 server kernel: [123471.678] Connection attempt from 203.0.113.200:54341 to 9200
+Jan 15 22:11:00 server kernel: [123472.890] Connection attempt from 203.0.113.200:54342 to 5601
+Jan 15 23:00:00 server systemd: Started Session 2 of user user1.
+

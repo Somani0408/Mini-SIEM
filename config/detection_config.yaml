@@ -1,0 +1,39 @@
+# Detection Rule Thresholds
+
+brute_force:
+  enabled: true
+  failed_attempts_threshold: 5
+  time_window_minutes: 5
+  severity: High
+  mitre_technique: T1110
+
+abnormal_login:
+  enabled: true
+  business_hours_start: 08:00
+  business_hours_end: 18:00
+  timezone: UTC
+  severity: Medium
+  mitre_technique: T1078
+
+suspicious_ip:
+  enabled: true
+  failed_attempts_threshold: 10
+  unique_users_threshold: 3
+  time_window_minutes: 15
+  severity: High
+  mitre_technique: T1071
+
+port_scanning:
+  enabled: true
+  unique_ports_threshold: 5
+  time_window_minutes: 10
+  severity: Medium
+  mitre_technique: T1046
+
+multiple_failed_logins:
+  enabled: true
+  failed_attempts_threshold: 3
+  time_window_minutes: 1
+  severity: Medium
+  mitre_technique: T1110.001
+

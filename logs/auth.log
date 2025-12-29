@@ -1,0 +1,32 @@
+Jan 15 09:15:23 server sshd[12345]: Accepted publickey for user1 from 10.0.0.5 port 54322 ssh2
+Jan 15 09:16:10 server sshd[12346]: Failed password for invalid user admin from 192.168.1.100 port 54321 ssh2
+Jan 15 09:16:15 server sshd[12347]: Failed password for invalid user admin from 192.168.1.100 port 54321 ssh2
+Jan 15 09:16:20 server sshd[12348]: Failed password for invalid user admin from 192.168.1.100 port 54321 ssh2
+Jan 15 09:16:25 server sshd[12349]: Failed password for invalid user admin from 192.168.1.100 port 54321 ssh2
+Jan 15 09:16:30 server sshd[12350]: Failed password for invalid user admin from 192.168.1.100 port 54321 ssh2
+Jan 15 09:17:05 server sshd[12351]: Failed password for root from 192.168.1.100 port 54321 ssh2
+Jan 15 10:30:45 server sshd[12352]: Accepted password for user2 from 172.16.0.10 port 54323 ssh2
+Jan 15 11:20:12 server sshd[12353]: Failed password for user1 from 203.0.113.50 port 54324 ssh2
+Jan 15 11:20:18 server sshd[12354]: Failed password for user1 from 203.0.113.50 port 54324 ssh2
+Jan 15 11:20:24 server sshd[12355]: Failed password for user1 from 203.0.113.50 port 54324 ssh2
+Jan 15 11:21:30 server sshd[12356]: Accepted password for user1 from 10.0.0.5 port 54325 ssh2
+Jan 15 14:45:00 server sshd[12357]: Failed password for invalid user test from 198.51.100.25 port 54326 ssh2
+Jan 15 14:45:05 server sshd[12358]: Failed password for invalid user test from 198.51.100.25 port 54326 ssh2
+Jan 15 14:45:10 server sshd[12359]: Failed password for invalid user test from 198.51.100.25 port 54326 ssh2
+Jan 15 02:15:30 server sshd[12360]: Accepted password for user3 from 203.0.113.75 port 54327 ssh2
+Jan 15 02:16:00 server sshd[12361]: Failed password for user3 from 203.0.113.75 port 54328 ssh2
+Jan 15 02:18:45 server sshd[12362]: Accepted publickey for user4 from 10.0.0.8 port 54329 ssh2
+Jan 15 15:30:12 server sshd[12363]: Failed password for invalid user administrator from 192.168.1.200 port 54330 ssh2
+Jan 15 15:30:17 server sshd[12364]: Failed password for invalid user administrator from 192.168.1.200 port 54330 ssh2
+Jan 15 15:30:22 server sshd[12365]: Failed password for invalid user administrator from 192.168.1.200 port 54330 ssh2
+Jan 15 15:30:27 server sshd[12366]: Failed password for invalid user administrator from 192.168.1.200 port 54330 ssh2
+Jan 15 15:30:32 server sshd[12367]: Failed password for invalid user administrator from 192.168.1.200 port 54330 ssh2
+Jan 15 16:00:45 server sshd[12368]: Accepted password for user5 from 172.16.0.20 port 54331 ssh2
+Jan 15 20:30:10 server sshd[12369]: Failed password for user2 from 198.51.100.100 port 54332 ssh2
+Jan 15 20:30:16 server sshd[12370]: Failed password for user2 from 198.51.100.100 port 54332 ssh2
+Jan 15 20:30:22 server sshd[12371]: Failed password for user2 from 198.51.100.100 port 54332 ssh2
+Jan 15 20:30:28 server sshd[12372]: Failed password for user2 from 198.51.100.100 port 54332 ssh2
+Jan 15 20:30:34 server sshd[12373]: Failed password for user2 from 198.51.100.100 port 54332 ssh2
+Jan 15 20:30:40 server sshd[12374]: Failed password for user2 from 198.51.100.100 port 54332 ssh2
+Jan 15 20:30:46 server sshd[12375]: Failed password for user2 from 198.51.100.100 port 54332 ssh2
+

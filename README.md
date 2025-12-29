@@ -1,3 +1,4 @@
+
 # Mini SIEM + SOC Dashboard
 
 A comprehensive Security Information and Event Management (SIEM) system with Security Operations Center (SOC) dashboard capabilities for collecting, analyzing, and visualizing security events from Linux systems.
@@ -377,4 +378,5 @@ This project is for educational and demonstration purposes.
 ---
 
 **Note**: This is a mini SIEM for educational/demonstration purposes. For production environments, consider enterprise SIEM solutions with proper security controls, compliance features, and support.
+
 
